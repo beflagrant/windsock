@@ -3,6 +3,8 @@
 require "test_helper"
 
 class TestWindsock < Minitest::Test
+  include Windsock::Helper
+
   def setup
     Windsock.path = fixture("application.css")
     Windsock.reset!
@@ -38,5 +40,21 @@ class TestWindsock < Minitest::Test
     Windsock.path = nil
     Windsock.reset!
     assert_raises(Windsock::Error) { Windsock.theme }
+  end
+
+  def test_helper_formats
+    assert_equal "#2b7fff", tailwind_color(:brand, 500)
+    assert_equal "rgb(43 127 255)", tailwind_color(:brand, 500, format: :rgb)
+    assert_equal "rgba(43, 127, 255, 1)", tailwind_color("brand-500", format: :rgba)
+    assert_equal "oklch(62.3% 0.214 259.815)", tailwind_color(:brand, 500, format: :css)
+    assert_equal "120rem", tailwind_value(:breakpoint, "3xl")
+    assert_raises(Windsock::NotFound) { tailwind_color(:nope) }
+    assert_raises(ArgumentError) { tailwind_color(:brand, 500, format: :hsl) }
+    assert_equal "#ffffff", tailwind_text_color(:brand, 900)
+    assert_equal "rgb(0 0 0)", tailwind_text_color(:brand, 50, format: :rgb)
+    assert_equal Windsock.scale(:brand), tailwind_scale(:brand)
+    error = assert_raises(ArgumentError) { tailwind_color(:brand) }
+    assert_match(/"brand" is a color scale; pick a step: 50, 500, 900, muted/, error.message)
+    assert_raises(ArgumentError) { tailwind_text_color(:brand) }
   end
 end

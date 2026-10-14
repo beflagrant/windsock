@@ -5,6 +5,7 @@ require_relative "windsock/color"
 require_relative "windsock/parser"
 require_relative "windsock/scale"
 require_relative "windsock/theme"
+require_relative "windsock/helper"
 
 # Read your Tailwind v4 theme from Ruby.
 #
@@ -62,3 +63,5 @@ module Windsock
     end
   end
 end
+
+require_relative "windsock/railtie" if defined?(Rails::Railtie)
