@@ -123,7 +123,7 @@ class TestColor < Minitest::Test
     assert_equal :aa_large, blue.contrast_level("#fff")
     assert_equal :aa, blue.contrast_level("#000")
     assert_equal :aaa, Color.parse("#000").contrast_level("#fff")
-    assert_nil Color.parse("#eee").contrast_level("#fff")
+    assert_equal :fail, Color.parse("#eee").contrast_level("#fff")
     assert_raises(ArgumentError) { blue.accessible?("#fff", level: :aaaa) }
   end
 

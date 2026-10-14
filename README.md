@@ -153,7 +153,7 @@ c.contrast("#fff")  # WCAG contrast ratio (any CSS color, a Color, or :white / :
 c.accessible?("#fff")                 # contrast >= 4.5 (AA for normal text)
 c.accessible?(:white, level: :aaa)    # :aa, :aa_large, :aaa, :aaa_large
 c.aa?("#fff") / c.aaa?("#fff", large: true)
-c.contrast_level("#fff")              # :aaa, :aa, :aa_large or nil
+c.contrast_level("#fff")              # :aaa, :aa, :aa_large or :fail
 c.text_color        # Windsock::Color::BLACK or ::WHITE, whichever reads better on c
 c.text_color(white: theme.white, black: theme.black)   # same, with the theme's own
 c.dark?             # same question as a boolean

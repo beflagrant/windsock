@@ -152,12 +152,13 @@ module Windsock
     def aaa?(other, large: false) = accessible?(other, level: large ? :aaa_large : :aaa)
 
     # The highest WCAG level this pair reaches for normal text: :aaa, :aa,
-    # :aa_large (fine for headings only), or nil.
+    # :aa_large (fine for headings only), or :fail.
     def contrast_level(other)
       ratio = contrast(other)
       if ratio >= WCAG[:aaa] then :aaa
       elsif ratio >= WCAG[:aa] then :aa
       elsif ratio >= WCAG[:aa_large] then :aa_large
+      else :fail
       end
     end
 
