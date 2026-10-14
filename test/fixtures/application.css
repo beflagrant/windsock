@@ -1,0 +1,37 @@
+/* App stylesheet, tailwindcss-rails layout */
+@import "tailwindcss";
+@import "./partials/brand.css";
+@import "tw-animate-css"; /* bare specifier: ignored */
+
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-blue-*: initial;        /* drop the default blue scale */
+  --font-display: "Satoshi", "sans-serif";
+  --breakpoint-3xl: 120rem;
+  --color-primary: var(--color-brand-500);
+  --color-primary-fg: var(--color-white);
+  --color-surface: var(--color-missing, #fafafa);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.05), 0 2px 4px rgb(0 0 0 / 0.05);
+  --color-overlay: --alpha(var(--color-black) / 50%);
+  --spacing-gutter: 1.5rem;
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  --animate-wiggle: wiggle 1s ease-in-out infinite;
+}
+
+@theme inline {
+  --color-accent: var(--color-amber-400);
+}
+
+.dark {
+  --color-surface: #111;
+}
+
+@layer components {
+  .btn { @apply rounded-md px-4 py-2; }
+}

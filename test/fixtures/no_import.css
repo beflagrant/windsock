@@ -1,0 +1,4 @@
+@theme {
+  --color-ink: #222;
+  --color-red-500: red; /* overrides nothing since no default theme loaded */
+}

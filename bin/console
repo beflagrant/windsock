@@ -4,8 +4,9 @@
 require "bundler/setup"
 require "windsock"
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+# Load the test fixture so there's a theme to poke at:
+#   theme = Windsock.load("test/fixtures/application.css")
+Windsock.path = File.expand_path("../test/fixtures/application.css", __dir__)
 
 require "irb"
 IRB.start(__FILE__)

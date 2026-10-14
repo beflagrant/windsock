@@ -1,0 +1,6 @@
+@theme {
+  --color-brand-50: oklch(97% 0.014 254.604);
+  --color-brand-500: oklch(62.3% 0.214 259.815);
+  --color-brand-900: #1e3a8a;
+  --color-brand-muted: hsl(217 33% 70% / 0.8);
+}
