@@ -189,8 +189,12 @@ bundle exec rake        # tests + rubocop
 bin/console
 ```
 
-To bump the bundled Tailwind theme: copy `theme.css` from the `tailwindcss` npm package into `lib/windsock/tailwind/` and update `Windsock::TAILWIND_VERSION`.
+To bump the bundled Tailwind theme: copy `theme.css` from the `tailwindcss` npm package into `lib/windsock/tailwind/` (and its `LICENSE` if it changed) and update `Windsock::TAILWIND_VERSION`.
+
+## Contributing
+
+Bug reports and pull requests are welcome at https://github.com/beflagrant/windsock. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
-MIT. The bundled `theme.css` is from [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss), also MIT.
+MIT, see [LICENSE.txt](LICENSE.txt). The bundled `theme.css` is from [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss), also MIT; its license is in [lib/windsock/tailwind/LICENSE](lib/windsock/tailwind/LICENSE).

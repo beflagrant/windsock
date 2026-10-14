@@ -1,23 +1,22 @@
 ## [Unreleased]
 
-- `Theme#scale` returns a `Windsock::Scale` instead of a Hash. It still answers
-  `[]`, `keys`, `size`, `each` and `to_h`, prints as a contrast table in the console,
-  and adds `contrast(on)`, `accessible(on:, level:)`, `text_colors` and `table(level:, color:)`
-  (passing ratios green, failing red when stdout is a TTY).
-- `Theme#scales` and `Theme#scale_names`; `Windsock.colors`, `.scale`, `.scales`,
-  `.scale_names` shortcuts.
-- `Color#accessible?`, `#aa?`, `#aaa?`, `#contrast_level`, `#text_color`, `#name`;
-  `Color::WHITE` / `Color::BLACK`. `#contrast` accepts any Color or CSS color.
-- `tailwind_text_color` and `tailwind_scale` view helpers.
-- `Theme#white`, `#black` and `#text_color`. Scales measure contrast against the
-  theme's `--color-white` / `--color-black`, not pure `#fff` / `#000`; `on:` accepts
-  theme color names. `Color#text_color` takes `white:` / `black:`.
+## [0.1.0] - 2026-10-14
+
+Initial release.
+
+- Parse Tailwind v4 `@theme` blocks with Tailwind's precedence rules; resolve `@import`
+  (including a bundled copy of Tailwind's default theme), `var()` and `--theme()`.
+- Convert oklch/oklab/hsl/rgb/hex/named colors to hex, `rgb()` and `rgba()`, with CSS
+  Color 4 gamut mapping.
+- `Theme` lookups: `#color`, `#colors`, `#scale`, `#scales`, `#scale_names`,
+  `#breakpoints`, `#fonts`, `#spacing` and the other namespaces; `#white`, `#black`
+  and `#text_color` use the theme's own `--color-white` / `--color-black`.
 - `color(:brand)` returns the brand `Scale` when the theme has `brand-*` steps but no
-  bare `--color-brand`, instead of `nil`. `tailwind_color(:brand)` raises `ArgumentError`
-  listing the steps. `Theme#colors` and `#scale_names` are memoized.
-
-## [0.1.0] - 2026-10-13
-
-- Initial release: parse Tailwind v4 `@theme` blocks, resolve `@import` and `var()`,
-  convert oklch/oklab/hsl/rgb colors to hex with CSS Color 4 gamut mapping,
-  Rails helper `tailwind_color` with dev reload.
+  bare `--color-brand`.
+- `Windsock::Scale`: Hash-like steps that print as a WCAG contrast table in the console,
+  plus `contrast(on)`, `accessible(on:, level:)`, `text_colors` and `table(level:, color:)`.
+- WCAG helpers on `Color`: `#contrast`, `#accessible?`, `#aa?`, `#aaa?`,
+  `#contrast_level` (`:aaa`, `:aa`, `:aa_large` or `:fail`), `#text_color`, `#dark?`, `#name`;
+  `Color::WHITE` / `Color::BLACK`.
+- Rails: Railtie with dev reload, and `tailwind_color`, `tailwind_text_color`,
+  `tailwind_scale` and `tailwind_value` view helpers.
